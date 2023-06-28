@@ -1,6 +1,12 @@
 {
+  "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
+    "isolatedModules": true,
     "experimentalDecorators": true,
-    "lib": ["ESNext"]
-  }
+    "skipLibCheck": true
+  },
+  "include": [
+    ".tini/tini.d.ts",
+    "**/*.ts"
+  ]
 }
