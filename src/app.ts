@@ -1,2 +1,1 @@
-import './components/header';
-import './components/body';
+import './components/welcome';

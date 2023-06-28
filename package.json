@@ -1,7 +1,7 @@
 {
-  "name": "web-components",
+  "name": "app",
   "version": "1.0.0",
-  "description": "A talk about Web Components.",
+  "description": "A minimum setup for building a web application.",
   "source": "src/index.html",
   "scripts": {
     "dev": "parcel",
