@@ -1,0 +1,13 @@
+:root {
+  --color-primary: #3880ff;
+  --color-dark: #222428;
+  --color-medium: #92949c;
+  --color-light: #f4f5f8;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: var(--color-light);
+  color: var(--color-dark);
+}
