@@ -1,11 +1,33 @@
 :root {
+  // colors
   --color-primary: #3880ff;
+  --color-danger: #eb445a;
   --color-dark: #222428;
   --color-medium: #92949c;
-  --color-light: #f4f5f8;
+  --color-light: #ffffff;
+  --color-shade: #f4f5f8;
+  // recolors
+  --recolor-primary: brightness(0) saturate(100%) invert(37%) sepia(73%) saturate(1013%) hue-rotate(193deg) brightness(106%) contrast(104%);
+  --recolor-danger: brightness(0) saturate(100%) invert(45%) sepia(84%) saturate(2892%) hue-rotate(324deg) brightness(91%) contrast(102%);
+  --recolor-dark: brightness(0) saturate(100%) invert(10%) sepia(6%) saturate(1068%) hue-rotate(182deg) brightness(102%) contrast(91%);
+  --recolor-medium: brightness(0) saturate(100%) invert(68%) sepia(9%) saturate(244%) hue-rotate(191deg) brightness(86%) contrast(85%);
+  --recolor-light: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%) hue-rotate(110deg) brightness(98%) contrast(108%);
+  --recolor-shade: brightness(0) saturate(100%) invert(85%) sepia(4%) saturate(111%) hue-rotate(187deg) brightness(114%) contrast(96%);
+  // sizes
+  --size-border: 1px;
+  --size-radius: 5px;
+  --size-xs: 320px;
+  --size-sm: 425px;
+  --size-md: 768px;
+  --size-lg: 1024px;
+  --size-xl: 1440px;
+  --size-xxl: 2560px;
+  // misc
+  --shadow: 0px 4px 8px #00000033;
 }
 
 body {
+  min-width: var(--size-xs);
   margin: 0;
   font-family: 'Montserrat', sans-serif;
   background: var(--color-light);

@@ -1,0 +1,115 @@
+{
+  "items": [
+    {
+      "name": "Folder 1",
+      "type": "folder",
+      "folderId": "/",
+      "fullPath": "/",
+      "id": "R1EPFUA"
+    },
+    {
+      "name": "",
+      "url": "",
+      "type": "photo",
+      "folderId": "/",
+      "fullPath": "/",
+      "id": "N22UK43"
+    },
+    {
+      "name": "Folder 1-1",
+      "type": "folder",
+      "folderId": "R1EPFUA",
+      "fullPath": "/R1EPFUA",
+      "id": "B3LG2UL"
+    },
+    {
+      "name": "Folder 1-1-1",
+      "type": "folder",
+      "folderId": "B3LG2UL",
+      "fullPath": "/R1EPFUA/B3LG2UL",
+      "id": "0UN7M4L"
+    },
+    {
+      "name": "Folder 1-1-1-1",
+      "type": "folder",
+      "folderId": "0UN7M4L",
+      "fullPath": "/R1EPFUA/B3LG2UL/0UN7M4L",
+      "id": "MDJUNZB"
+    },
+    {
+      "name": "Folder 2",
+      "type": "folder",
+      "folderId": "/",
+      "fullPath": "/",
+      "id": "RFB3YFA"
+    },
+    {
+      "name": "Folder 1-2",
+      "type": "folder",
+      "folderId": "R1EPFUA",
+      "fullPath": "/R1EPFUA",
+      "id": "BC8BSES"
+    },
+    {
+      "name": "Folder 1-1-1-2",
+      "type": "folder",
+      "folderId": "0UN7M4L",
+      "fullPath": "/R1EPFUA/B3LG2UL/0UN7M4L",
+      "id": "54AR7OK"
+    },
+    {
+      "name": "Photo 1",
+      "url": "https://images.unsplash.com/photo-1682686581580-d99b0230064e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60",
+      "type": "photo",
+      "folderId": "/",
+      "fullPath": "/",
+      "id": "CQA9XXB"
+    },
+    {
+      "name": "Photo 2",
+      "url": "https://images.unsplash.com/photo-1687971717526-74e4c2dc7efa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60",
+      "type": "photo",
+      "folderId": "/",
+      "fullPath": "/",
+      "id": "W0GI6D2"
+    },
+    {
+      "name": "Photo 3",
+      "url": "https://images.unsplash.com/photo-1688113174197-ce252f2e597f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60",
+      "type": "photo",
+      "folderId": "/",
+      "fullPath": "/",
+      "id": "1DYXR7B"
+    },
+    {
+      "name": "Photo 3",
+      "url": "https://plus.unsplash.com/premium_photo-1673827679980-cf4fce79d184?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+      "type": "photo",
+      "folderId": "/",
+      "fullPath": "/",
+      "id": "TNREKSA"
+    },
+    {
+      "name": "fwefwefwef",
+      "url": "https://images.unsplash.com/photo-1688149893355-591b530e1ad4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60",
+      "type": "photo",
+      "folderId": "/",
+      "fullPath": "/",
+      "id": "U1SEA1E"
+    },
+    {
+      "name": "Folder 3",
+      "type": "folder",
+      "folderId": "/",
+      "fullPath": "/",
+      "id": "5U8863D"
+    },
+    {
+      "name": "Folder 1-1-1-1-1",
+      "type": "folder",
+      "folderId": "MDJUNZB",
+      "fullPath": "/R1EPFUA/B3LG2UL/0UN7M4L/MDJUNZB",
+      "id": "XCMFLB5"
+    }
+  ]
+}
