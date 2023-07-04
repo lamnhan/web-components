@@ -2,7 +2,7 @@
   "name": "app",
   "version": "1.0.0",
   "description": "A minimum setup for building a web application.",
-  "source": "src/index.html",
+  "source": "src/app.html",
   "scripts": {
     "dev": "parcel",
     "build": "parcel build"
