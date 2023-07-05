@@ -1,19 +1,27 @@
-export type StoreEventCallback = (newValue: unknown, oldValue: unknown) => void;
+export type StoreCallback<Type> = (newValue: Type, oldValue: Type) => void;
 
-export function UseStore<States>(store: unknown, stateKey?: keyof States) {
+export type Store<States> = States & {
+  subscribe: <Type>(key: keyof States, cb: StoreCallback<Type>) => () => void;
+  commit: <Type>(key: keyof States, value: Type) => Type;
+}
+
+export function UseStore<States>(
+  store: Store<States>,
+  stateKey?: keyof States
+) {
   return function (target: any, propertyKey: string) {
     const key = (stateKey || propertyKey) as string;
-    const Key = key[0].toUpperCase() + key.substring(1);
-    const onChangedKey = `on${Key}Changed`;
-    const unsubscribeKey = `_unsubscribe${Key}`;
-    // store original callbacks
+    const unsubscribeKey = `___${key}$`;
+    // originals
     const originalConnectedCallback = target.connectedCallback;
     const originalDisconnectedCallback = target.disconnectedCallback;
-    // override callbacks
+    // override
     target.connectedCallback = function () {
       originalConnectedCallback.bind(this)();
-      this[unsubscribeKey] =
-        store[onChangedKey]((value: unknown) => this[propertyKey] = value);
+      this[unsubscribeKey] = store['subscribe'](
+        key as unknown as keyof States,
+        (value: unknown) => this[propertyKey] = value
+      );
     };
     target.disconnectedCallback = function () {
       originalDisconnectedCallback.bind(this)();
@@ -23,43 +31,39 @@ export function UseStore<States>(store: unknown, stateKey?: keyof States) {
 }
 
 export function createStore<States>(states: States) {
-  return new Proxy(states as Object, {
-    get(target, prop) {
-      const key = prop.toString();
-      const stateKey = key.slice(2, 3).toLowerCase() + key.slice(3, -7);
-      // events
-      if (key.startsWith('on') && key.endsWith('Changed')) {
-        if (stateKey in target) {
-          const subKey = `_${stateKey}Subscriptions`;
-          (target as Object)[subKey] ||= [];
-          return (cb: StoreEventCallback) => {
-            // new subscription
-            const subscriptions = target[subKey] as StoreEventCallback[]; 
-            subscriptions.push(cb)
+  const store = new Proxy(states as Object, {
+    get(target, prop: string) {
+      if (prop === 'subscribe') {
+        return (stateKey: string, cb: StoreCallback<unknown>) => {
+          if (stateKey in target) {
+            // subscribe
+            const subscriptions: Map<symbol, StoreCallback<unknown>>  = target[`___${stateKey}$`] ||= new Map(); 
+            const subscriptionId = Symbol();
+            subscriptions.set(subscriptionId, cb);
             // unsubscribe
-            const subscriptionsId = subscriptions.length - 1
-            return () => subscriptions.splice(subscriptionsId, 1);
-          };
-        } else {
-          throw new Error(`Unknown state: ${stateKey}`);
+            return () => subscriptions.delete(subscriptionId);
+          } else {
+            throw new Error(`Unknown state: ${stateKey}`);
+          }
         }
+      } else if (prop === 'commit') {
+        return (stateKey: string, value: unknown) => store[stateKey] = value;
+      } else {
+        return target[prop];
       }
-      // states
-      return target[key];
     },
-    set: (target, prop, value) => {
-      const key = prop.toString();
-      const subKey = `_${key}Subscriptions`;
-      const subscriptions = (target[subKey] || []) as StoreEventCallback[];
+    set(target, prop: string, value) {
+      const subscriptions = target[`___${prop}$`] as undefined | Map<symbol, StoreCallback<unknown>>;
       // set value
-      const oldValue = !(target[key] instanceof Object)
-        ? target[key]
-        : structuredClone(target[key]);
-      (target as Object)[key] = value;
+      const oldValue = !(target[prop] instanceof Object)
+        ? target[prop]
+        : structuredClone(target[prop]);
+      (target as Object)[prop] = value;
       // notify subscribers
-      subscriptions.forEach((cb: StoreEventCallback) => cb(value, oldValue));
+      subscriptions?.forEach(cb => cb(value, oldValue));
       // success
       return true;
     }
-  }) as States;
+  }) as Store<States>;
+  return store;
 }
