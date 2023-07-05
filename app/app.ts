@@ -1,27 +1,14 @@
-import configs from '../configs/development';
-import providers from './providers';
-import routes from './routes';
-import {metas} from './metas';
-import states, {Store} from './states';
+import {App, TiniComponent, html} from '@tinijs/core';
 
-import '../layouts/default';
-import '../pages/home';
-import '../pages/oops';
+import configs from './configs/development';
 
-@App(providers)
+import './layouts/default';
+
+@App()
 export class AppRoot extends TiniComponent {
-  $configs = configs;
-  $meta!: Meta;
-  $router!: Router;
-  $store!: Store;
-
-  onReady() {
-    this.$meta = initMetas({metas});
-    this.$router = registerRoutes(routes);
-    this.$store = createStore(states);
-  }
+  public readonly $configs = configs;
 
   protected render() {
-    return html`${APP_ROOT_TEMPLATE}`;
+    return html`<h1>Hello World!</h1>`;
   }
 }

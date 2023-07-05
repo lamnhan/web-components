@@ -1,16 +1,18 @@
 /*
- * Unistylus themes
+ * Skins and utils
  */
-@import './themes';
+
+@import '../node_modules/@tinijs/ui-bootstrap/styles/skins/light.css';
+@import '../node_modules/@tinijs/ui-bootstrap/skin-utils.css';
 
 /*
  * Global styles
  */
- 
+
 body {
   margin: 0;
   font-family: var(--font-body);
-  font-size: var(--size-font);
+  font-size: var(--size-text);
   background: var(--color-background);
   color: var(--color-foreground);
 }

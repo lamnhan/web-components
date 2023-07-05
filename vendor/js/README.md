@@ -1,3 +1,0 @@
-Put vendor JS files here, remove if not needed.
-
-For example: `jquery.min.js`, `lodash.min.js`, `gsap.min.js`, ...

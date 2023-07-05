@@ -2,11 +2,7 @@
   "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
     "isolatedModules": true,
-    "experimentalDecorators": true,
-    "skipLibCheck": true
+    "experimentalDecorators": true
   },
-  "include": [
-    ".tini/tini.d.ts",
-    "**/*.ts"
-  ]
+  "include": ["**/*.ts"]
 }

@@ -1,3 +1,0 @@
-Put vendor CSS files here, remove if not needed.
-
-For example: `bootstrap.min.css`, `reset.min.css`, ...

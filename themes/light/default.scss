@@ -1,7 +1,0 @@
-@import './properties';
-
-:root,
-[data-theme="default"],
-[data-theme="light"] {
-  @include light-properties;
-}
