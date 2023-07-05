@@ -43,15 +43,16 @@ export class AppBreadcrumbs extends LitElement {
     // computed(items) => segments
     if (changedProperties.has('items')) {
       this.segments = [{ id: '/', name: 'Home' }]; // home
-      if (this.items.length < 4) { // less than 4 items
+      if (this.items.length < 5) { // less than 5 items
         this.segments = this.segments.concat(this.items);
-      } else { // more than 4 items
+      } else { // more than 5 items
+        const first = this.items[0];
         const secondLast = this.items[this.items.length - 2];
         const last = this.items[this.items.length - 1];
         const nestedItems = this.items
-          .slice(0, this.items.length - 2)
+          .slice(1, this.items.length - 2)
           .map(item => ({ text: item.name, color: AppColors.Primary, onClicked: () => navigate(folderLink(item)) }));
-        this.segments = this.segments.concat({ nestedItems }, secondLast, last);
+        this.segments = this.segments.concat(first, { nestedItems }, secondLast, last);
       }
     }
   }

@@ -49,13 +49,12 @@ export class AppRoot extends LitElement {
       // 3. breadcrumbs
       const breadcrumbs = !currentFolder ? [] : await this.buildBreadcrumbs(currentFolder);
       // Finally: set states
-      store.currentFolderId = currentFolderId;
-      store.currentFolder = currentFolder;
-      store.folders = folders;
-      store.photos = photos;
-      store.breadcrumbs = breadcrumbs;
+      store.commit('currentFolderId', currentFolderId);
+      store.commit('currentFolder', currentFolder);
+      store.commit('folders', folders);
+      store.commit('photos', photos);
+      store.commit('breadcrumbs', breadcrumbs);
     } catch (error) {
-      console.log(error);
       store.currentFolderId = null;
     }
   }
