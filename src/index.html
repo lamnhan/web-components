@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Inputs</title>
+    <style type="text/css">
+        :root {
+          --color-danger: #eb445a;
+          --color-success: #2dd36f;
+        }
+
+        body {
+          padding: 3rem 1rem;
+        }
+
+        main {
+          width: 100%;
+          max-width: 350px;
+          margin: 0 auto;
+        }
+    </style>
+    <script type="module" src="./input.native.ts"></script>
+  </head>
+  <body>
+
+    <main>
+
+      <native-input
+        label="Native"
+        validations='[
+          { "equals": "HI", "type": "success", "message": "😘" },
+          { "equals": "FU", "type": "error", "message": "🤬" }
+        ]'
+      ></native-input>
+
+    </main>
+
+  </body>
+</html>

@@ -1,18 +1,16 @@
 {
   "name": "app",
-  "version": "1.0.0",
-  "description": "A minimum setup for building a web application.",
-  "source": "src/app.html",
+  "version": "0.0.0",
+  "description": "A standalone components built with Vue, Lit and Native.",
+  "source": "src/index.html",
   "scripts": {
     "dev": "parcel",
-    "build": "parcel build"
-  },
-  "dependencies": {
-    "lit": "^3.0.0-pre.0"
+    "build:native": "parcel build"
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.9.2",
-    "parcel": "^2.9.2",
-    "typescript": "~4.9.0"
+    "lit": "^3.0.0-pre.0",
+    "vue": "^3.3.4",
+    "parcel": "^2.9.3",
+    "typescript": "~5.1.6"
   }
 }

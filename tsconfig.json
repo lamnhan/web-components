@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
+    "strict": true,
     "experimentalDecorators": true,
-    "lib": ["ESNext"]
+    "lib": ["DOM", "ESNext"]
   }
 }
