@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <title>Inputs</title>
 
-    <style type="text/css">
+    <style>
         :root {
           --color-danger: #eb445a;
           --color-success: #2dd36f;
@@ -21,16 +21,25 @@
         }
     </style>
 
-    <script type="module" src="./input.native.ts"></script>
-    <script type="module" src="./input.lit.ts"></script>
+    <script type="module" src="../build/vue/input.umd.min.js"></script>
+    <script type="module" src="../build/input.native.js"></script>
+    <script type="module" src="../build/input.lit.js"></script>
   </head>
   <body>
 
     <main>
 
-      <native-input label="Native"></native-input>
+      <native-input
+        label="Native (3kb)"
+        validations='[
+          {"equals": "HI", "type": "success", "message": "😘"},
+          {"equals": "FU", "type": "error", "message": "🤬"}
+        ]'
+      ></native-input>
 
-      <lit-input label="Lit"></lit-input>
+      <lit-input label="Lit (19kb)"></lit-input>
+
+      <vue-input label="Vue (63kb)"></vue-input>
 
     </main>
 
@@ -39,8 +48,8 @@
         { equals: 'HI', type: 'success', message: '😘' },
         { equals: 'FU', type: 'error', message: '🤬' }
       ];
-      document.querySelector('native-input').validations = validations;
       document.querySelector('lit-input').validations = validations;
+      document.querySelector('vue-input').validations = validations;
     </script>
 
   </body>

@@ -7,6 +7,7 @@ style.replaceSync(`
     display: block;
     container-type: inline-size;
     position: relative;
+    width: 100%;
   }
   
   label {
