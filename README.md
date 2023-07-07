@@ -10,6 +10,10 @@ Clone this repo and run `npm install` to install dependencies.
 
 Then, run `npm run dev` to start a development server.
 
+## Inputs
+
+Please see: https://github.com/lamnhan/web-components/tree/inputs
+
 ## Photos Management
 
 Please see: https://github.com/lamnhan/web-components/tree/photos
