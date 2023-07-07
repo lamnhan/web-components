@@ -3,37 +3,45 @@
   <head>
     <meta charset="utf-8"/>
     <title>Inputs</title>
+
     <style type="text/css">
         :root {
           --color-danger: #eb445a;
           --color-success: #2dd36f;
         }
 
-        body {
-          padding: 3rem 1rem;
-        }
-
         main {
           width: 100%;
           max-width: 350px;
-          margin: 0 auto;
+          margin: 4rem auto;
+        }
+
+        main > * {
+          margin-bottom: 2rem;
         }
     </style>
+
     <script type="module" src="./input.native.ts"></script>
+    <script type="module" src="./input.lit.ts"></script>
   </head>
   <body>
 
     <main>
 
-      <native-input
-        label="Native"
-        validations='[
-          { "equals": "HI", "type": "success", "message": "😘" },
-          { "equals": "FU", "type": "error", "message": "🤬" }
-        ]'
-      ></native-input>
+      <native-input label="Native"></native-input>
+
+      <lit-input label="Lit"></lit-input>
 
     </main>
+
+    <script>
+      const validations = [
+        { equals: 'HI', type: 'success', message: '😘' },
+        { equals: 'FU', type: 'error', message: '🤬' }
+      ];
+      document.querySelector('native-input').validations = validations;
+      document.querySelector('lit-input').validations = validations;
+    </script>
 
   </body>
 </html>
