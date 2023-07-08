@@ -2,7 +2,11 @@
   <label part="input" :class="messageType">
     <strong>{{ label || 'Label' }}</strong>
     <div>
-      <input type="text" @input="onChanged" />
+      <input
+        type="text"
+        :placeholder="placeholder"
+        @input="onChanged"
+      />
       <em>{{ messageText }}</em>
     </div>
   </label>
@@ -13,6 +17,7 @@
 
   const props = defineProps({
     label: String,
+    placeholder: String,
     validations: Array,
   });
 

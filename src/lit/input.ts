@@ -74,6 +74,7 @@ export class LitInput extends LitElement {
   `;
 
   @property({ type: String }) readonly label = 'Label';
+  @property({ type: String }) readonly placeholder?: string;
   @property({ type: Array }) readonly validations?: Validation[];
   @state() messageType?: string;
   @state() messageText?: string;
@@ -103,7 +104,11 @@ export class LitInput extends LitElement {
       <label part="input" class=${this.messageType as string}>
         <strong>${this.label}</strong>
         <div>
-          <input type="text" @input=${this.onChanged} />
+          <input
+            type="text"
+            .placeholder=${this.placeholder || ''}
+            @input=${this.onChanged}
+          />
           <em>${this.messageText || ''}</em>
         </div>
       </label>

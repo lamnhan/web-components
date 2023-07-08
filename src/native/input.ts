@@ -90,6 +90,7 @@ export class NativeInput extends HTMLElement {
   private messageNode: null | HTMLElement = null;
 
   private label?: string = 'Label';
+  private placeholder?: string;
   private validations?: Validation[];
 
   constructor() {
@@ -108,13 +109,19 @@ export class NativeInput extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ['label', 'validations'];
+    return ['label', 'placeholder', 'validations'];
   }
 
   private setLabel(attr: null | string) {
     if (!attr || !this.labelNode) return;
     this.label = attr;
     this.labelNode.textContent = this.label;
+  }
+
+  private setPlaceholder(attr: null | string) {
+    if (!attr || !this.inputNode) return;
+    this.placeholder = attr;
+    this.inputNode.setAttribute('placeholder', this.placeholder);
   }
 
   private setValidations(attr: null | string) {
@@ -126,6 +133,7 @@ export class NativeInput extends HTMLElement {
     // initial props
     this.setLabel(this.getAttribute('label'));
     this.setValidations(this.getAttribute('validations'));
+    this.setPlaceholder(this.getAttribute('placeholder'));
     // events
     if (this.inputNode) {
       this.inputNode.addEventListener('input', e => this.onInput(e));
@@ -135,6 +143,7 @@ export class NativeInput extends HTMLElement {
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (name === 'label') this.setLabel(newValue);
     if (name === 'validations') this.setValidations(newValue);
+    if (name === 'placeholder') this.setPlaceholder(newValue);
   }
 
   private onInput(e: Event) {
