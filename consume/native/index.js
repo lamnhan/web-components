@@ -1,4 +1,3 @@
-// props
 const originalPlaceholder = 'Type OK or NG';
 const badassPlaceholder = 'Type HI or FU';
 const originalValidations = [
@@ -10,17 +9,19 @@ const badassValidations = [
   { equals: 'FU', type: 'error', message: '🤬' }
 ];
 
-// elements
+// element refs
 const switchModeButton = document.getElementById('switch-mode');
 const nativeInput = document.querySelector('native-input');
 const litInput = document.querySelector('lit-input');
 const vueInput = document.querySelector('vue-input');
 
 // another way of setting props
-litInput.setAttribute('placeholder', originalPlaceholder);
-litInput.validations = originalValidations;
-vueInput.setAttribute('placeholder', originalPlaceholder);
-vueInput.validations = originalValidations;
+// nativeInput.placeholder = originalPlaceholder;
+// nativeInput.validations = originalValidations;
+// litInput.placeholder = originalPlaceholder;
+// litInput.validations = originalValidations;
+// vueInput.placeholder = originalPlaceholder;
+// vueInput.validations = originalValidations;
 
 // events
 switchModeButton.addEventListener('click', switchMode);
@@ -30,16 +31,17 @@ vueInput.addEventListener('change', changeStatus);
 
 function switchMode() {
   const isBadass = switchModeButton.classList.contains('badass');
+  // compute props
   const placeholder = isBadass ? originalPlaceholder : badassPlaceholder;
   const validations = isBadass ? originalValidations : badassValidations;
-  // components
-  nativeInput.setAttribute('placeholder', placeholder);
+  // set component props
+  nativeInput.placeholder = placeholder;
   nativeInput.validations = validations;
-  litInput.setAttribute('placeholder', placeholder);
+  litInput.placeholder = placeholder;
   litInput.validations = validations;
-  vueInput.setAttribute('placeholder', placeholder);
+  vueInput.placeholder = placeholder;
   vueInput.validations = validations;
-  // button
+  // update the button
   switchModeButton.textContent = !isBadass ? 'Badass mode' : 'Normal mode';
   switchModeButton.classList[!isBadass ? 'add': 'remove']('badass');
 }

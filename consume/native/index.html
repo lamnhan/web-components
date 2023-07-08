@@ -24,9 +24,23 @@
         ]'
       ></native-input>
 
-      <lit-input label="Lit (19kb)"></lit-input>
+      <lit-input
+        label="Lit (19kb)"
+        placeholder="Type OK or NG"
+        validations='[
+          {"equals": "OK", "type": "success", "message": "👍"},
+          {"equals": "NG", "type": "error", "message": "👎"}
+        ]'
+      ></lit-input>
 
-      <vue-input label="Vue (63kb)"></vue-input>
+      <vue-input
+        label="Vue (63kb)"
+        placeholder="Type OK or NG"
+        validations='[
+          {"equals": "OK", "type": "success", "message": "👍"},
+          {"equals": "NG", "type": "error", "message": "👎"}
+        ]'
+      ></vue-input>
 
     </main>
 
