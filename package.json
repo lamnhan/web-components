@@ -4,14 +4,17 @@
   "description": "A standalone components built with Vue, Lit and Native.",
   "scripts": {
     "dev:native": "parcel consume/native/index.html --dist-dir www",
-    "build:native": "npm run build:native-standalone",
+    "build:native": "npm run build:native-lite && npm run build:native-standalone",
     "build:native-standalone": "parcel build ./src/native/input.ts --dist-dir build/native/standalone",
+    "build:native-lite": "esbuild ./src/native/input.ts --outfile=build/native/input.js --format=esm --minify --sourcemap",
     "dev:lit": "parcel consume/lit/index.html --dist-dir www",
-    "build:lit": "npm run build:lit-standalone",
+    "build:lit": "npm run build:lit-lite && npm run build:lit-standalone",
     "build:lit-standalone": "parcel build ./src/lit/input.ts --dist-dir build/lit/standalone",
+    "build:lit-lite": "esbuild ./src/lit/input.ts --outfile=build/lit/input.js --format=esm --minify --sourcemap",
     "dev:vue": "cd consume/vue && npm run dev",
-    "build:vue": "npm run build:vue-standalone",
-    "build:vue-standalone": "vue-cli-service build --target lib --name input --inline-vue --dest build/vue/standalone --formats umd-min src/vue/input.js"
+    "build:vue": "npm run build:vue-lite && npm run build:vue-standalone",
+    "build:vue-standalone": "vue-cli-service build --target lib --name input --inline-vue --dest build/vue/standalone --formats umd-min src/vue/input.js",
+    "build:vue-lite": "vue-cli-service build --target lib --name input --dest build/vue --formats umd-min src/vue/input.js"
   },
   "dependencies": {
     "lit": "^3.0.0-pre.0",
@@ -19,6 +22,7 @@
   },
   "devDependencies": {
     "@vue/cli-service": "^5.0.8",
+    "esbuild": "^0.18.11",
     "parcel": "^2.9.3",
     "typescript": "~5.1.6"
   }
