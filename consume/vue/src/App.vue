@@ -11,7 +11,7 @@
       :placeholder="placeholder"
       .validations="validations"
       @change="changeStatus"
-      ></native-input>
+    ></native-input>
   
     <lit-input
       label="Lit"

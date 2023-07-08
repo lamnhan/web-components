@@ -84,14 +84,26 @@ template.innerHTML = `
 
 // <script>
 export class NativeInput extends HTMLElement {
-  private rootNode: null | HTMLLabelElement = null;
+  static get observedAttributes() {
+    return ['label', 'placeholder', 'validations'];
+  }
+
+  declare private _label?: string;
+  get label() { return this._label }
+  set label(value: undefined | string) { this.changeLabel(value, true) }
+
+  declare private _placeholder?: string;
+  get placeholder() { return this._placeholder }
+  set placeholder(value: undefined | string) { this.changePlaceholder(value, true) }
+
+  declare private _validations?: Validation[];
+  get validations() { return this._validations }
+  set validations(value: undefined | Validation[]) { this.changeValidations(value) }
+
+  private containerNode: null | HTMLLabelElement = null;
   private labelNode: null | HTMLElement = null;
   private inputNode: null | HTMLInputElement = null;
   private messageNode: null | HTMLElement = null;
-
-  private label?: string = 'Label';
-  private placeholder?: string;
-  private validations?: Validation[];
 
   constructor() {
     super();
@@ -100,54 +112,76 @@ export class NativeInput extends HTMLElement {
       // set template/style
       this.shadowRoot.appendChild(template.content.cloneNode(true));
       this.shadowRoot.adoptedStyleSheets = [style];
-      // access children
-      this.rootNode = this.shadowRoot.querySelector('label');
+      // children refs
+      this.containerNode = this.shadowRoot.querySelector('label');
       this.labelNode = this.shadowRoot.querySelector('strong');
       this.inputNode = this.shadowRoot.querySelector('input');
       this.messageNode = this.shadowRoot.querySelector('em');
     }
   }
 
-  static get observedAttributes() {
-    return ['label', 'placeholder', 'validations'];
+  private changeLabel(value?: string, reflect = false) {
+    this._label = value || 'Label';
+    if (reflect) {
+      this.setAttribute('label', this._label);
+    }
+    if (this.labelNode) {
+      this.labelNode.textContent = this._label;
+    }
   }
 
-  private setLabel(attr: null | string) {
-    if (!attr || !this.labelNode) return;
-    this.label = attr;
-    this.labelNode.textContent = this.label;
+  private changePlaceholder(value?: string, reflect = false) {
+    this._placeholder = value as string;
+    if (reflect) {
+      this.setAttribute('placeholder', this._placeholder);
+    }
+    if (this.inputNode) {
+      this.inputNode.setAttribute('placeholder', this._placeholder);
+    }
   }
 
-  private setPlaceholder(attr: null | string) {
-    if (!attr || !this.inputNode) return;
-    this.placeholder = attr;
-    this.inputNode.setAttribute('placeholder', this.placeholder);
-  }
-
-  private setValidations(attr: null | string) {
-    if (!attr) return;
-    this.validations = JSON.parse(attr);
+  private changeValidations(value?: string | Object) {
+    this._validations = typeof value === 'string' ? JSON.parse(value) : value;
   }
 
   connectedCallback() {
-    // initial props
-    this.setLabel(this.getAttribute('label'));
-    this.setPlaceholder(this.getAttribute('placeholder'));
-    this.setValidations(this.getAttribute('validations'));
+    // initial attribute values
+    const initialLabel = this.getAttribute('label');
+    if (initialLabel && initialLabel !== this._label) {
+      this.changeLabel(initialLabel);
+    }
+    const initialPlaceholder = this.getAttribute('placeholder');
+    if (initialPlaceholder && initialPlaceholder !== this._placeholder) {
+      this.changePlaceholder(initialPlaceholder);
+    }
+    const initialValidations = this.getAttribute('validations');
+    if (initialValidations) {
+      this.changeValidations(initialValidations);
+    }
     // events
     if (this.inputNode) {
-      this.inputNode.addEventListener('input', e => this.onInput(e));
+      this.inputNode.addEventListener('input', this.onInputed);
     }
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-    if (name === 'label') this.setLabel(newValue);
-    if (name === 'placeholder') this.setPlaceholder(newValue);
-    if (name === 'validations') this.setValidations(newValue);
+    if (name === 'label' && newValue !== this._label) {
+      this.changeLabel(newValue);
+    } else if (name === 'placeholder' && newValue !== this._placeholder) {
+      this.changePlaceholder(newValue);
+    } else if (name === 'validations') {
+      this.changeValidations(newValue);
+    }
   }
 
-  private onInput(e: Event) {
-    if (!this.validations || !this.rootNode || !this.inputNode || !this.messageNode) return;
+  disconnectedCallback() {
+    if (this.inputNode) {
+      this.inputNode.removeEventListener('input', this.onInputed);
+    }
+  }
+
+  private onInputed = (e: Event) => {
+    if (!this.validations || !this.containerNode || !this.inputNode || !this.messageNode) return;
     const value = (e?.target as HTMLInputElement)?.value;
     // validate
     let validationResult: undefined | Pick<Validation, 'type' | 'message'>;
@@ -155,7 +189,7 @@ export class NativeInput extends HTMLElement {
       const { equals, type, message } = this.validations[i];
       const isMatched = value.toLowerCase() === equals.toLowerCase();
       this.messageNode.textContent = !isMatched ? '' : message;
-      this.rootNode?.classList[!isMatched ? 'remove' : 'add'](type);
+      this.containerNode?.classList[!isMatched ? 'remove' : 'add'](type);
       if (isMatched) {
         validationResult = { type, message };
         break;
