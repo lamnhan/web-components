@@ -132,8 +132,8 @@ export class NativeInput extends HTMLElement {
   connectedCallback() {
     // initial props
     this.setLabel(this.getAttribute('label'));
-    this.setValidations(this.getAttribute('validations'));
     this.setPlaceholder(this.getAttribute('placeholder'));
+    this.setValidations(this.getAttribute('validations'));
     // events
     if (this.inputNode) {
       this.inputNode.addEventListener('input', e => this.onInput(e));
@@ -142,8 +142,8 @@ export class NativeInput extends HTMLElement {
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (name === 'label') this.setLabel(newValue);
-    if (name === 'validations') this.setValidations(newValue);
     if (name === 'placeholder') this.setPlaceholder(newValue);
+    if (name === 'validations') this.setValidations(newValue);
   }
 
   private onInput(e: Event) {

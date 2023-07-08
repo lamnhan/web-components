@@ -45,7 +45,7 @@ function switchMode() {
 }
 
 function changeStatus(e) {
-  const { type } = e.detail?.[0] || {};
+  const [{ type }] = e.detail || [];
   if (!type) {
     document.body.removeAttribute('class');
   } else {

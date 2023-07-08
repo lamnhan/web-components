@@ -6,6 +6,7 @@
     "dev:native": "parcel consume/native/index.html --dist-dir www",
     "build:native": "npm run build:native-standalone",
     "build:native-standalone": "parcel build ./src/native/input.ts --dist-dir build/native/standalone",
+    "dev:lit": "parcel consume/lit/index.html --dist-dir www",
     "build:lit": "npm run build:lit-standalone",
     "build:lit-standalone": "parcel build ./src/lit/input.ts --dist-dir build/lit/standalone",
     "build:vue": "npm run build:vue-standalone",
