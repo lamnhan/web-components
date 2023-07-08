@@ -10,7 +10,6 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    font-family: Lucida Sans, Verdana, sans-serif;
   }
 
   strong {
@@ -67,11 +66,11 @@
   }
 `);let t=document.createElement("template");t.innerHTML=`
   <label part="input">
-    <strong>Label</strong>
+    <strong></strong>
     <div>
       <input type="text" />
       <em></em>
     </div>
   </label>
-`;class o extends HTMLElement{constructor(){super(),this.rootNode=null,this.labelNode=null,this.inputNode=null,this.messageNode=null,this.attachShadow({mode:"open"}),this.shadowRoot&&(this.shadowRoot.appendChild(t.content.cloneNode(!0)),this.shadowRoot.adoptedStyleSheets=[e],this.rootNode=this.shadowRoot.querySelector("label"),this.labelNode=this.shadowRoot.querySelector("strong"),this.inputNode=this.shadowRoot.querySelector("input"),this.messageNode=this.shadowRoot.querySelector("em"))}connectedCallback(){let e=this.getAttribute("label");this.labelNode&&e&&(this.labelNode.textContent=e);let t=this.getAttribute("validations");t&&(this.validations=JSON.parse(t)),this.inputNode&&this.inputNode.addEventListener("input",e=>this.onInput(e))}onInput(e){if(!this.validations||!this.rootNode||!this.inputNode||!this.messageNode)return;let t=e?.target?.value;for(let e=0;e<this.validations.length;e++){let{equals:o,type:s,message:i}=this.validations[e],r=t.toLowerCase()===o.toLowerCase();if(this.messageNode.textContent=r?i:"",this.rootNode?.classList[r?"add":"remove"](s),r)break}}}customElements.define("native-input",o)})();
+`;class o extends HTMLElement{constructor(){super(),this.rootNode=null,this.labelNode=null,this.inputNode=null,this.messageNode=null,this.label="Label",this.attachShadow({mode:"open"}),this.shadowRoot&&(this.shadowRoot.appendChild(t.content.cloneNode(!0)),this.shadowRoot.adoptedStyleSheets=[e],this.rootNode=this.shadowRoot.querySelector("label"),this.labelNode=this.shadowRoot.querySelector("strong"),this.inputNode=this.shadowRoot.querySelector("input"),this.messageNode=this.shadowRoot.querySelector("em"))}static get observedAttributes(){return["label","validations"]}setLabel(e){e&&this.labelNode&&(this.label=e,this.labelNode.textContent=this.label)}setValidations(e){e&&(this.validations=JSON.parse(e))}connectedCallback(){this.setLabel(this.getAttribute("label")),this.setValidations(this.getAttribute("validations")),this.inputNode&&this.inputNode.addEventListener("input",e=>this.onInput(e))}attributeChangedCallback(e,t,o){"label"===e&&this.setLabel(o),"validations"===e&&this.setValidations(o)}onInput(e){let t;if(!this.validations||!this.rootNode||!this.inputNode||!this.messageNode)return;let o=e?.target?.value;for(let e=0;e<this.validations.length;e++){let{equals:s,type:i,message:l}=this.validations[e],a=o.toLowerCase()===s.toLowerCase();if(this.messageNode.textContent=a?l:"",this.rootNode?.classList[a?"add":"remove"](i),a){t={type:i,message:l};break}}let s={value:o,...t};this.dispatchEvent(new CustomEvent("change",{detail:s}))}}customElements.define("native-input",o)})();
 //# sourceMappingURL=input.js.map
