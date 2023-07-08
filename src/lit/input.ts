@@ -53,7 +53,7 @@ export class LitInput extends LitElement {
       background-color: #ccc;
       border-radius: 0 0.25rem 0.25rem 0;
       text-shadow: 0px 0px 2px #fff;
-      font-size: 3rem;
+      font-size: 2.5rem;
     }
 
     .error input {
@@ -81,13 +81,21 @@ export class LitInput extends LitElement {
   private onChanged(e: Event) {
     if (!this.validations) return;
     const value = (e?.target as HTMLInputElement)?.value;
+    // validate
+    let validationResult: undefined | Pick<Validation, 'type' | 'message'>;
     for (let i = 0; i < this.validations.length; i++) {
       const { equals, type, message } = this.validations[i];
-      const match = value.toLowerCase() === equals.toLowerCase();
-      this.messageType = match ? type : undefined;
-      this.messageText = match ? message : undefined;
-      if (match) break;
+      const isMatched = value.toLowerCase() === equals.toLowerCase();
+      this.messageType = isMatched ? type : undefined;
+      this.messageText = isMatched ? message : undefined;
+      if (isMatched) {
+        validationResult = { type, message };
+        break;
+      }
     }
+    // result
+    const detail = { value, ...validationResult };
+    this.dispatchEvent(new CustomEvent('change', { detail }));
   }
 
   protected render() {

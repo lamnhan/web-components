@@ -50,7 +50,7 @@ style.replaceSync(`
     background-color: #ccc;
     border-radius: 0 0.25rem 0.25rem 0;
     text-shadow: 0px 0px 2px #fff;
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 
   .error input {
