@@ -11,7 +11,6 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      font-family: Lucida Sans, Verdana, sans-serif;
     }
 
     strong {
@@ -75,4 +74,4 @@
         </div>
       </label>
     `}constructor(...t){super(...t),this.label="Label"}};e([ta({type:String})],tp.prototype,"label",void 0),e([ta({type:Array})],tp.prototype,"validations",void 0),e([td()],tp.prototype,"messageType",void 0),e([td()],tp.prototype,"messageText",void 0),tp=e([(t="lit-input",e=>"function"==typeof e?(customElements.define(t,e),e):((t,e)=>{let{kind:i,elements:s}=e;return{kind:i,elements:s,finisher(e){customElements.define(t,e)}}})(t,e))],tp)})();
-//# sourceMappingURL=input.lit.js.map
+//# sourceMappingURL=input.js.map

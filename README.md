@@ -1,11 +1,12 @@
 # Web Components
 
-A small talk about web components.
+Build and use web components with Vue, Lit and native. 
 
-## Inputs
+## Build
 
-Example components built with Vue, Lit and Native.
+- Native: `src/native/input.ts`
+- Lit: `src/lit/input.ts`
+- Vue: `src/vue/input.js`
 
-- Native: `src/input.native.ts`
-- Lit: `src/input.lit.ts`
-- Vue: `src/vue/`
+## Consume
+

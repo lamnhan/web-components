@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 
-import { Validation } from './types';
+import { Validation } from '../types';
 
 @customElement('lit-input')
 export class LitInput extends LitElement {
@@ -17,7 +17,6 @@ export class LitInput extends LitElement {
       display: flex;
       flex-direction: column;
       width: 100%;
-      font-family: Lucida Sans, Verdana, sans-serif;
     }
 
     strong {

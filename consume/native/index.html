@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Inputs</title>
+
+    <link rel="stylesheet" href="./index.css" />
+    <script type="module" src="./index.js"></script>
+
+    <script type="module" src="../../src/native/input.ts"></script>
+    <script type="module" src="../../build/lit/standalone/input.js"></script>
+    <script type="module" src="../../build/vue/standalone/input.umd.min.js"></script>
+
+  </head>
+  <body>
+
+    <main>
+
+      <button id="reverse">Reverse</button>
+
+      <native-input
+        label="Native (5kb)"
+        validations='[
+          {"equals": "HI", "type": "success", "message": "😘"},
+          {"equals": "FU", "type": "error", "message": "🤬"}
+        ]'
+      ></native-input>
+
+      <lit-input label="Lit (19kb)"></lit-input>
+
+      <vue-input label="Vue (63kb)"></vue-input>
+
+    </main>
+
+  </body>
+</html>

@@ -1,0 +1,59 @@
+:root {
+  --color-danger: #eb445a;
+  --color-success: #2dd36f;
+}
+
+body {
+  font-family: Lucida Sans, Verdana, sans-serif;
+  position: relative;
+  margin: 0;
+  padding: 4rem;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  opacity: .15;
+}
+
+body.error::before {
+  background: var(--color-danger);
+}
+
+body.success::before {
+  background: var(--color-success);
+}
+
+main {
+  width: 100%;
+  max-width: 350px;
+  margin: auto;
+}
+
+main > * {
+  margin-bottom: 2rem;
+}
+
+button {
+  display: block;
+  margin: 0 auto 3rem;
+  padding: 1rem 2rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  background: #fff;
+  cursor: pointer;
+  font-size: 1.3rem;
+}
+
+button:hover {
+  opacity: .5;
+}
+
+button.reversed {
+  background: #aaa;
+}

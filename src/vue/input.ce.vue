@@ -45,7 +45,6 @@ function onChanged(e) {
     display: flex;
     flex-direction: column;
     width: 100%;
-    font-family: Lucida Sans, Verdana, sans-serif;
   }
 
   strong {

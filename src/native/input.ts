@@ -1,4 +1,4 @@
-import { Validation } from './types';
+import { Validation } from '../types';
 
 // <style>
 const style = new CSSStyleSheet();
