@@ -22,6 +22,7 @@ vueInput.validations = originalValidations;
 switchModeButton.addEventListener('click', switchMode);
 nativeInput.addEventListener('change', changeStatus);
 litInput.addEventListener('change', changeStatus);
+vueInput.addEventListener('change', changeStatus);
 
 function switchMode() {
   const isBadass = switchModeButton.classList.contains('badass');
@@ -31,14 +32,15 @@ function switchMode() {
   litInput.validations = validations;
   vueInput.validations = validations;
   // button
+  switchModeButton.textContent = !isBadass ? 'Badass mode' : 'Normal mode';
   switchModeButton.classList[!isBadass ? 'add': 'remove']('badass');
 }
 
 function changeStatus(e) {
-  const { detail } = e;
-  if (!detail.type) {
+  const { type } = e.detail?.[0] || {};
+  if (!type) {
     document.body.removeAttribute('class');
   } else {
-    document.body.classList.add(detail.type);
+    document.body.classList.add(type);
   }
 }

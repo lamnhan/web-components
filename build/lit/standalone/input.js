@@ -65,7 +65,7 @@
     .success em {
       background-color: var(--color-success);
     }
-  `})();onChanged(t){let e;if(!this.validations)return;let i=t?.target?.value;for(let t=0;t<this.validations.length;t++){let{equals:s,type:r,message:n}=this.validations[t],o=i.toLowerCase()===s.toLowerCase();if(this.messageType=o?r:void 0,this.messageText=o?n:void 0,o){e={type:r,message:n};break}}let s={value:i,...e};this.dispatchEvent(new CustomEvent("change",{detail:s}))}render(){return B`
+  `})();onChanged(t){let e;if(!this.validations)return;let i=t?.target?.value;for(let t=0;t<this.validations.length;t++){let{equals:s,type:r,message:n}=this.validations[t],o=i.toLowerCase()===s.toLowerCase();if(this.messageType=o?r:void 0,this.messageText=o?n:void 0,o){e={type:r,message:n};break}}let s=[{value:i,...e}];this.dispatchEvent(new CustomEvent("change",{detail:s}))}render(){return B`
       <label part="input" class=${this.messageType}>
         <strong>${this.label}</strong>
         <div>

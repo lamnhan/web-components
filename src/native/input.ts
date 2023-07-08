@@ -153,7 +153,7 @@ export class NativeInput extends HTMLElement {
       }
     }
     // result
-    const detail = { value, ...validationResult };
+    const detail = [{ value, ...validationResult }];
     this.dispatchEvent(new CustomEvent('change', { detail }));
   }
 

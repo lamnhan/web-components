@@ -94,7 +94,7 @@ export class LitInput extends LitElement {
       }
     }
     // result
-    const detail = { value, ...validationResult };
+    const detail = [{ value, ...validationResult }];
     this.dispatchEvent(new CustomEvent('change', { detail }));
   }
 

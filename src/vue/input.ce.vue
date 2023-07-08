@@ -9,28 +9,38 @@
 </template>
 
 <script setup>
-import { defineProps, ref, onMounted } from 'vue'
+  import { defineProps, defineEmits, ref } from 'vue';
 
-const props = defineProps({
-  label: String,
-  validations: Array,
-})
+  const props = defineProps({
+    label: String,
+    validations: Array,
+  });
 
-const messageType = ref()
-const messageText = ref()
+  const emit = defineEmits(['change']);
 
-function onChanged(e) {
-  if (!props.validations) return
-  const value = e?.target?.value;
-  for (let i = 0; i < validations.length; i++) {
-    const { equals, type, message } = validations[i];
-    const match = value.toLowerCase() === equals.toLowerCase();
-    messageType.value = !match ? '' : type;
-    messageText.value = !match ? '' : message;
-    if (match) break;
+  const messageType = ref();
+  const messageText = ref();
+
+  function onChanged(e) {
+    if (!props.validations) return
+    const value = e?.target?.value;
+    // validate
+    const validations = typeof props.validations === 'string'
+      ? JSON.parse(props.validations) : props.validations;
+    let validationResult;
+    for (let i = 0; i < validations.length; i++) {
+      const { equals, type, message } = validations[i];
+      const match = value.toLowerCase() === equals.toLowerCase();
+      messageType.value = !match ? '' : type;
+      messageText.value = !match ? '' : message;
+      if (match) {
+        validationResult = { type, message };
+        break;
+      }
+    }
+    // result
+    emit('change', { value, ...validationResult });
   }
-}
-
 </script>
 
 <style>
