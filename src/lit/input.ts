@@ -76,8 +76,8 @@ export class LitInput extends LitElement {
   @property({ type: String }) readonly label = 'Label';
   @property({ type: String }) readonly placeholder?: string;
   @property({ type: Array }) readonly validations?: Validation[];
-  @state() messageType?: string;
-  @state() messageText?: string;
+  @state() private messageType?: string;
+  @state() private messageText?: string;
 
   private onChanged(e: Event) {
     if (!this.validations) return;

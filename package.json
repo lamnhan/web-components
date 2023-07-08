@@ -9,6 +9,7 @@
     "dev:lit": "parcel consume/lit/index.html --dist-dir www",
     "build:lit": "npm run build:lit-standalone",
     "build:lit-standalone": "parcel build ./src/lit/input.ts --dist-dir build/lit/standalone",
+    "dev:vue": "cd consume/vue && npm run dev",
     "build:vue": "npm run build:vue-standalone",
     "build:vue-standalone": "vue-cli-service build --target lib --name input --inline-vue --dest build/vue/standalone --formats umd-min src/vue/input.js"
   },

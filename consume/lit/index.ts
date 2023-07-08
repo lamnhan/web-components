@@ -76,7 +76,7 @@ export class AppRoot extends LitElement {
   private changeStatus(e: CustomEvent) {
     const [{ type }] = e.detail || [];
     if (!type) {
-      this.removeAttribute('class');
+      this.classList.remove('error', 'success');
     } else {
       this.classList.add(type);
     }
