@@ -50,10 +50,7 @@ button {
   font-size: 1.3rem;
 }
 
-button:hover {
-  opacity: .5;
-}
-
-button.reversed {
-  background: #aaa;
+button.badass {
+  background: #333;
+  color: #fff;
 }

@@ -1,13 +1,15 @@
 // validations
 const originalValidations = [
+  { equals: 'OK', type: 'success', message: '👍' },
+  { equals: 'NG', type: 'error', message: '👎' }
+];
+const badassValidations = [
   { equals: 'HI', type: 'success', message: '😘' },
   { equals: 'FU', type: 'error', message: '🤬' }
 ];
-const reversedValidations = originalValidations
-  .map(item => ({ ...item, equals: item.equals === 'HI' ? 'FU' : 'HI' }));
 
 // elements
-const reverseButton = document.getElementById('reverse');
+const switchModeButton = document.getElementById('switch-mode');
 const nativeInput = document.querySelector('native-input');
 const litInput = document.querySelector('lit-input');
 const vueInput = document.querySelector('vue-input');
@@ -17,21 +19,22 @@ litInput.validations = originalValidations;
 vueInput.validations = originalValidations;
 
 // events
-reverseButton.addEventListener('click', reverseValidations);
-nativeInput.addEventListener('change', onChanged);
+switchModeButton.addEventListener('click', switchMode);
+nativeInput.addEventListener('change', changeStatus);
+litInput.addEventListener('change', changeStatus);
 
-function reverseValidations() {
-  const isReversed = reverseButton.classList.contains('reversed');
-  const validations = isReversed ? originalValidations : reversedValidations;
+function switchMode() {
+  const isBadass = switchModeButton.classList.contains('badass');
+  const validations = isBadass ? originalValidations : badassValidations;
   // components
   nativeInput.validations = validations;
   litInput.validations = validations;
   vueInput.validations = validations;
   // button
-  reverseButton.classList[!isReversed ? 'add': 'remove']('reversed');
+  switchModeButton.classList[!isBadass ? 'add': 'remove']('badass');
 }
 
-function onChanged(e) {
+function changeStatus(e) {
   const { detail } = e;
   if (!detail.type) {
     document.body.removeAttribute('class');

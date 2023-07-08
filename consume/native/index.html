@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./index.css" />
     <script type="module" src="./index.js"></script>
 
-    <script type="module" src="../../src/native/input.ts"></script>
+    <script type="module" src="../../build/native/standalone/input.js"></script>
     <script type="module" src="../../build/lit/standalone/input.js"></script>
     <script type="module" src="../../build/vue/standalone/input.umd.min.js"></script>
 
@@ -16,13 +16,13 @@
 
     <main>
 
-      <button id="reverse">Reverse</button>
+      <button id="switch-mode">Switch mode</button>
 
       <native-input
-        label="Native (5kb)"
+        label="Native (3kb)"
         validations='[
-          {"equals": "HI", "type": "success", "message": "😘"},
-          {"equals": "FU", "type": "error", "message": "🤬"}
+          {"equals": "OK", "type": "success", "message": "👍"},
+          {"equals": "NG", "type": "error", "message": "👎"}
         ]'
       ></native-input>
 
