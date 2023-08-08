@@ -5,6 +5,17 @@
 @import '../node_modules/@tinijs/ui-bootstrap/styles/skins/light.css';
 @import '../node_modules/@tinijs/ui-bootstrap/skin-utils.css';
 
+[data-theme="bootstrap/light"] {
+  --color-primary: #07a259;
+  --color-primary-contrast: #ffffff;
+  --color-primary-shade: #00722e;
+  --color-primary-tint: #55d487;
+  --color-warning: #e5e817;
+  --color-warning-contrast: #000000;
+  --color-warning-shade: #afb600;
+  --color-warning-tint: #ffff5b;
+}
+
 /*
  * Global styles
  */
